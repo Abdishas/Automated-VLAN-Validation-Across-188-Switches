@@ -1,75 +1,88 @@
-Overview
+**Automated VLAN Validation Tool**
+
+**Overview**
+
 This Python script automates VLAN configuration validation across multiple Cisco switches (tested on 188 devices). It connects to each switch, retrieves VLAN information, and saves the output to individual files for analysis. The tool helps identify missing or inconsistent VLAN configurations, ensuring compliance with network design standards.
 
-Features
-Connects to multiple switches via SSH
+**Features**
 
-Retrieves and saves VLAN configurations
+• Connects to multiple switches via SSH
 
-Handles both standard and enable secret authentication
+• Retrieves and saves VLAN configurations
 
-Generates timestamped output files
+• Handles both standard and enable secret authentication
 
-Provides success/failure status for each device
+• Generates timestamped output files
 
-Prerequisites
-Python 3.x
+• Provides success/failure status for each device
 
-Required Python packages: netmiko, getpass, datetime
+**Prerequisites**
 
-Installation
-Clone this repository
+• Python 3.13
+
+• Required Python packages: netmiko, getpass, datetime
+
+**Installation**
 
 Install required packages:
 
-bash
 pip install netmiko
-Configuration
+
+**Configuration**
+
 Create a switches.txt file in the same directory as the script
 
 Add one IP address per line for all switches you want to check
-Example:
 
-text
+**Example**
+switches.txt 
+content:
+
 192.168.1.1
-192.168.1.2
-10.0.0.1
-Usage
-Run the script:
 
-bash
+192.168.1.2
+
+10.0.0.1
+
+**Usage**
+
+**Run the script:**
+
 python list_vlans.py
+
 Enter your credentials when prompted:
 
-SSH Username
+• SSH Username
 
-SSH Password
+• SSH Password
 
-Enable Secret (press Enter if not used)
+• Enable Secret (optional)
 
-Output
+**Output**
+
 The script creates individual text files for each switch with the naming format:
 
-text
 vlans_[hostname]_[timestamp].txt
 Example: vlans_SWITCH01_20231201.txt
 
-Each file contains:
+**Each file contains:**
 
-Switch hostname
+• Switch hostname
 
-IP address
+• IP address
 
-Complete VLAN configuration from the show vlan brief command
+• Complete VLAN configuration from the show vlan brief command
 
-Results
+**Results**
+
 After execution, the script displays:
 
-Total number of switches processed
+• Total number of switches processed
 
-Success count
+• Success count
 
-Individual connection status for each device
+• Individual connection status for each device
 
-Customization
+**Customization**
+
 You can modify the command sent to switches by changing the vlans = connection.send_command("show vlan brief", delay_factor=2) line to use different show commands.
